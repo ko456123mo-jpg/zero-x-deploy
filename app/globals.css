@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind v4: التوجيهات القديمة (base/components/utilities) أُزيلت في v4،
+   وكانت تُهمَل بصمت فتخرج صفحة بلا أي utility class. نستخدم @import الجديد
+   ونحمّل إعداد v3 الحالي (theme.extend + content) عبر @config. */
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
   --bg-primary: #0a0e17;
