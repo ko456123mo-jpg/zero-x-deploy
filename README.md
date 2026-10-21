@@ -5,8 +5,35 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
 ![Convex](https://img.shields.io/badge/Backend-Convex-purple?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Prototype-orange?style=flat-square)
+[![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
 > منصة اختبار اختراق ذكية تعتمد على وكلاء الذكاء الاصطناعي المتعددين لأتمتة دورة الهجوم الكاملة (Kill Chain) من الاستطلاع حتى التقرير.
+
+---
+
+## ⚠️ حالة المشروع — اقرأ هذا أولاً
+
+**هذا نموذج أولي (Prototype)، لا منتج جاهز للإنتاج.** الواجهة كاملة وتُبنى بنجاح،
+لكن طبقة الخلفية (Convex) **سقالة غير موصولة** والواجهة تعمل ببيانات تجريبية.
+
+| الطبقة | الحالة | التفصيل |
+|---|---|---|
+| واجهة Next.js (7 صفحات) | ✅ **تعمل** | بناء إنتاجي ناجح · TypeScript نظيف · 0 أخطاء ESLint |
+| تقارير PDF/HTML | ✅ **تعمل** | توليد فعلي عبر jsPDF على بيانات الجلسة |
+| حوكمة قانونية (إقرار النطاق) | ✅ **تعمل** | بوابة توقيع قبل أي تشغيل |
+| مخطط قاعدة البيانات (7 جداول) | ✅ مُعرَّف | `convex/schema.ts` |
+| دوال Convex | ⚠️ **سقالة** | مكتوبة ككائنات خام، غير موصولة بـ`query()/mutation()` |
+| مصادقة (OAuth) | ⚠️ **سقالة** | واجهات فقط، بلا Convex Auth مُفعّل |
+| تنفيذ الوكلاء الفعلي | ⚠️ **محاكاة** | `lib/agents/simulator.ts` — يعمل بلا مفاتيح |
+| تكامل E2B الحقيقي | ⚠️ **يتطلب مفتاح** | يتحول لوضع Demo عند غيابه |
+| اختبارات | ❌ **لا توجد** | CI يغطي typecheck + lint + build فقط |
+
+**ما يعنيه هذا لك:** إذا كنت تقيّم المشروع كعرض هندسي، فالواجهة ومعمارية الوكلاء
+جاهزة للعرض. إذا كنت تريده منتجاً، فالمتبقي هو وصل Convex + المصادقة + الاختبارات.
+
+**لا تعرض هذا المشروع كخدمة اختراق تعمل فعلياً.** استخدمه كعرض لقدرات
+تصميم واجهات وتنسيق وكلاء — وهذا ما هو عليه.
 
 ## 🚀 الميزات الرئيسية
 
@@ -49,8 +76,8 @@
 ### 1. استنساخ المشروع
 
 ```bash
-git clone https://github.com/your-org/zero-x.git
-cd zero-x
+git clone https://github.com/ko456123mo-jpg/zero-x-deploy.git
+cd zero-x-deploy
 ```
 
 ### 2. تثبيت الحزم
@@ -486,9 +513,16 @@ SESSION_EXPIRATION_DAYS=30
 4. Push (`git push origin feature/amazing`)
 5. فتح Pull Request
 
-## 📄 الرخصة
+## 📄 الرخصة والسياسات
 
-MIT License - راجع ملف [LICENSE](LICENSE) للتفاصيل.
+**MIT License** — راجع [`LICENSE`](LICENSE). الاستخدام التجاري مسموح.
+
+- [`USAGE_POLICY.md`](USAGE_POLICY.md) — الاستخدام المسموح/الممنوع وتفويض العملاء.
+- [`SECURITY.md`](SECURITY.md) — الإبلاغ عن ثغرة، ومعالجة مفاتيح API.
+
+> ⚠️ يحتوي `lib/exploits/adbHijacker/` على كود إثبات مفهوم لثغرة **CVE-2026-0073**
+> (تجاوز مصادقة ADB اللاسلكية · CVSS 8.8). للاستخدام على أجهزة تملكها أو على
+> شبكة مختبر معزولة فقط.
 
 ## 🙏 شكر خاص
 

@@ -199,7 +199,7 @@ export default function ReportsPage() {
         },
       });
 
-      // @ts-ignore
+      // @ts-expect-error - jspdf-autotable augments the jsPDF instance at runtime
       yPos = doc.lastAutoTable.finalY + 15;
 
       // Findings

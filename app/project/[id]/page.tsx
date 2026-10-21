@@ -76,6 +76,16 @@ export default function WarRoomPage() {
   const [findings, setFindings] = useState<Finding[]>([]);
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [disclaimerSigned, setDisclaimerSigned] = useState(false);
+  // مدة الجلسة تُحسب بعد التركيب فقط — تجنّباً لاستدعاء دالة غير نقية أثناء الرندر
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  useEffect(() => {
+    const started = Date.now();
+    const id = setInterval(() => {
+      setElapsedSeconds(Math.floor((Date.now() - started) / 1000));
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
   const [showPlan, setShowPlan] = useState(true);
   const [typingMessage, setTypingMessage] = useState<string | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
@@ -403,7 +413,7 @@ export default function WarRoomPage() {
               <span className="w-2 h-2 rounded-full bg-zero-emerald animate-pulse"></span>
               E2B Sandbox: Active
             </span>
-            <span>Session Duration: {Math.floor((Date.now() - mockMessages[0].timestamp) / 1000)}s</span>
+            <span>Session Duration: {elapsedSeconds}s</span>
           </div>
           <div>
             <span className="text-zero-cyan">ZERO-X Platform v1.0</span>
