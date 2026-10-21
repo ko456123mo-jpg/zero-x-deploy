@@ -44,3 +44,8 @@ coverage/
 # Misc
 *.pem
 .vercel
+
+# Build output
+.next/
+out/
+tsconfig.tsbuildinfo
