@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:styles": "node scripts/check-styles.mjs"
   },
   "dependencies": {
     "@convex-dev/auth": "^0.0.95",

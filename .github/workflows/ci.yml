@@ -43,3 +43,8 @@ jobs:
           # قيم وهمية للتجربة — لا أسرار في CI
           NEXT_PUBLIC_CONVEX_URL: http://127.0.0.1:3210
         run: npx next build
+
+      # حارس الأنماط: يكشف أن Tailwind لم يولّد utilities فينجح البناء بصفحة
+      # بلا تنسيق (حدث فعلاً مع ترقية Tailwind إلى v4).
+      - name: Verify stylesheet is real
+        run: npm run check:styles
